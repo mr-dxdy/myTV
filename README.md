@@ -10,4 +10,6 @@ Install [Tizen SDK](http://www.samsungdforum.com/TizenGuide/tizen4441/index.html
 
 # How to install?
 
+![HELL NO DEVELOPER!](http://i.imgur.com/tkO5V7V.png)
+
 [**HELL NO!**](https://news.ycombinator.com/item?id=11326804)
