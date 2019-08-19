@@ -1,6 +1,9 @@
-.settings
-.sign
-.project
-.sdk_delta.info
-.tproject
-*.wgt
+# Tizen project
+dist/myTV/.sdk_delta.info
+dist/myTV/*.wgt
+dist/myTV/css/main.css
+dist/myTV/js/main.js
+dist/myTV/.sign/
+
+# Dev
+node_modules/

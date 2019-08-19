@@ -1,0 +1,40 @@
+{
+  "name": "mytv",
+  "version": "1.0.0",
+  "description": "My samsung IPTV player + playlist.",
+  "private": "true",
+  "scripts": {
+    "build": "npx webpack --mode=production",
+    "test": "mocha -u bdd-lazy-var/global --require @babel/register src/**/*test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-dxdy/myTV.git"
+  },
+  "author": "dxdy@bk.ru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mr-dxdy/myTV/issues"
+  },
+  "homepage": "https://github.com/mr-dxdy/myTV#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "bdd-lazy-var": "^2.5.2",
+    "chai": "^4.2.0",
+    "chai-dom": "^1.8.1",
+    "css-loader": "^3.1.0",
+    "jsdom": "^15.1.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "mocha": "^6.2.0",
+    "sinon": "^7.4.1",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "dependencies": {
+    "m3u8-file-parser": "^0.2.1"
+  }
+}
