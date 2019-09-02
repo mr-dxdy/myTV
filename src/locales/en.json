@@ -1,0 +1,9 @@
+{
+  "loading": "Loading \"{{url}}\"...",
+  "play": "Play",
+  "stop": "Stop",
+  "pause": "Pause",
+  "buffering": "Buffering: {{progress}}%",
+  "audioTrack": "Audio Track: {{name}}",
+  "UnableToOpenUrl": "Unable to open url {{url}}"
+}

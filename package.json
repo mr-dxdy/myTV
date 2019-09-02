@@ -26,15 +26,18 @@
     "chai": "^4.2.0",
     "chai-dom": "^1.8.1",
     "css-loader": "^3.1.0",
+    "file-loader": "^4.2.0",
     "jsdom": "^15.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "mocha": "^6.2.0",
     "sinon": "^7.4.1",
+    "url-loader": "^2.1.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
     "xmlhttprequest": "^1.8.0"
   },
   "dependencies": {
+    "i18next": "^17.0.13",
     "m3u8-file-parser": "^0.2.1"
   }
 }

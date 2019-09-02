@@ -108,11 +108,11 @@ ul {
 
 #channel-list:empty:after {
   display: block;
-  padding-top: 100%;
-  color: #3080ba;
-  font-weight: bold;
-  text-align: center;
-  content: 'Loading playlist...';
+  content: ' ';
+  padding-top: 200%;
+  background-image: url('../assets/three-dots.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #channel-list li {

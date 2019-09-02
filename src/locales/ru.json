@@ -1,0 +1,9 @@
+{
+  "loading": "Загрузка \"{{url}}\"...",
+  "play": "Старт",
+  "stop": "Стоп",
+  "pause": "Пауза",
+  "buffering": "Буферизация: {{progress}}%",
+  "audioTrack": "Звуковая дорожка: {{name}}",
+  "UnableToOpenUrl": "Не возможно открыть url {{url}}"
+}

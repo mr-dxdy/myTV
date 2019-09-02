@@ -7,7 +7,8 @@ module.exports = {
     entry: "./src/index.js",
     output: {
        path: __dirname + "/dist/myTV",
-       filename: "js/main.js",
+       filename: 'js/main.js',
+       chunkFilename: 'js/[name].js'
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -34,7 +35,14 @@ module.exports = {
            { loader: MiniCssExtractPlugin.loader },
            'css-loader'
          ],
-       }
+       },
+       {
+ 				test: /.(svg)$/,
+ 				use: {
+          loader: 'url-loader',
+          options: { outputPath: 'assets/', name: '[path][name].[ext]' }
+        },
+ 			 }
      ]
    }
 

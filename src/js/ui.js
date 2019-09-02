@@ -1,4 +1,5 @@
 import Logger from './logger.js'
+import I18n from './i18n.js'
 
 // Round shortcut
 function int(number) {
@@ -34,28 +35,28 @@ class UI {
     item = this.dom.channels.querySelector('li[data-url="' + url + '"]');
     if (item) {
       item.classList.add('playing');
-      this.message('Loading "' + item.dataset.name + '"...', 60000);
+      this.message( I18n.t("loading", { url: item.dataset.name }), 60000);
     }
 
     return item;
   }
 
   play() {
-    this.message('Play');
+    this.message( I18n.t("Play") );
   }
 
   stop() {
-    this.message('Stop');
+    this.message( I18n.t("Stop") );
   }
 
   pause() {
-    this.message('Pause');
+    this.message( I18n.t("Pause") );
   }
 
   buffering(state, progress) {
     var message = this.dom.message;
     if (state == 'progress') {
-      this.message('Buffering: ' + String(progress) + '%');
+      this.message( I18n.t("buffering", { progress: progress }) );
     } else if (state == 'complete') {
       this.message();
     }
@@ -81,7 +82,7 @@ class UI {
   }
 
   setAudio(no) {
-    this.message(`Audio Track: ${no}`);
+    this.message( I18n.t("audioTrack", { name: no }) );
   }
 
   // Set channel list

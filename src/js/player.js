@@ -1,3 +1,5 @@
+import I18n from './i18n.js'
+
 class Player {
   constructor(config) {
     this.screen = null;
@@ -90,8 +92,7 @@ class Player {
     this.webapis.avplay.prepareAsync(
       () => { this.webapis.avplay.play(); },
       () => {
-        this.logger.info(`Unable to open url ${url}`);
-        this.ui.message(`Unable to open url ${url}`);
+        this.ui.message( I18n.t("UnableToOpenUrl", { url: url }) );
       }
     );
   }

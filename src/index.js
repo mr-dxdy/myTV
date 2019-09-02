@@ -1,3 +1,4 @@
+import assets from './assets/index.js'
 import css from './css/style.css'
 
 import Logger from './js/logger.js'

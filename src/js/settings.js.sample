@@ -1,0 +1,17 @@
+class LanguageSettings {
+  get default() {
+    return 'en';
+  }
+}
+
+class Settings {
+  constructor() {
+    this.m_language = new LanguageSettings();
+  }
+
+  get language() {
+    return this.m_language;
+  }
+}
+
+export default new Settings;
