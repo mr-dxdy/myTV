@@ -20,17 +20,15 @@ class Parser {
   }
 
   loadFromUrls(urls) {
-    const promises = urls.map(function(url) {
-      return this.loadFromUrl(url);
-    }.bind(this));
+    const promises = urls.map((url) => { return this.loadFromUrl(url); });
 
     return new Promise((resolve, reject) => {
       const promise = Promise.all(promises);
 
       promise.then((responses) => {
         const channels = Object.keys(responses).reduce((channels, resKey) => {
-          return { ...channels, ...responses[resKey] };
-        }, {});
+          return channels.concat(responses[resKey]);
+        }, []);
 
         resolve(channels);
       });
@@ -43,15 +41,9 @@ class Parser {
     const reader = new M3U8FileParser();
     reader.read(content);
 
-    var channels = {};
-    reader.getResult().segments.forEach((segment) => {
-      channels[segment.inf.title] = {
-        name: segment.inf.title,
-        url: segment.url
-      }
+    return reader.getResult().segments.map((segment) => {
+      return { name: segment.inf.title, url: segment.url };
     });
-
-    return channels
   }
 }
 

@@ -1,85 +1,119 @@
-import tvKey from './tv-key';
+import Logger from './logger'
+import ChannelRepository from './channel-repository'
+import UI from './ui.js'
+import Player from './player'
+import TvKey from './tv-key';
+import Playlist from './playlist.js'
 
 class App {
   constructor(props) {
     this.document = props.document;
     this.tizen = props.tizen;
-    this.player = props.player;
-    this.logger = props.logger;
+    this.webapis = props.webapis;
+
+    this.logger = new Logger(this.document.getElementById('log'));
+    this.ui = new UI({ document: this.document, logger: this.logger });
+
+    this.player = new Player({ tv: this.defaultTvSize(), ui: this.ui, logger: this.logger, webapis: this.webapis });
+    this.tizen.systeminfo.getPropertyValue('DISPLAY', (data) => {
+      this.player.tv = { width: data.resolutionWidth, height: data.resolutionHeight };
+    });
 
     this.registerKeys();
-    this.document.addEventListener('keydown', this.onKeyDown.bind(this));
+    this.document.addEventListener('keydown', (e) => this.onKeyDown(e));
+  }
+
+  loadChannels() {
+    const promise = ChannelRepository.loadFromUrls(Playlist.urls);
+
+    promise.then((repository) => {
+      let channelsQuery = repository.startQuery();
+      channelsQuery = channelsQuery.sortBy({ key: 'name', direction: 'asc' });
+      channelsQuery = channelsQuery.rejectBy((channel) => channel.existsInBlackList());
+
+      this.ui.setChannels(channelsQuery.all());
+    })
+
+    promise.catch((xhr) => {
+      this.logger.info(`Error loading playlist: ${xhr.status}`)
+    });
+  }
+
+  defaultTvSize() {
+    return { width: 800, height: 600 };
   }
 
   onKeyDown(e) {
     const key = e.keyCode;
     switch (key) {
-      case tvKey.PLAYPAUSE:
-      case tvKey.PLAY:
+      case TvKey.PLAYPAUSE:
+      case TvKey.PLAY:
         this.logger.info('key: play/pause');
         this.player.playPause();
         break;
-      case tvKey.PAUSE:
+      case TvKey.PAUSE:
         this.logger.info('key: pause');
         this.player.pause();
         break;
-      case tvKey.STOP:
+      case TvKey.STOP:
         this.logger.info('key: stop');
         this.player.stop();
         break;
-      case tvKey.FF:
+      case TvKey.FF:
         this.player.foward();
         break;
-      case tvKey.RW:
+      case TvKey.RW:
         this.player.rewind();
         break;
-      case tvKey.UP:
+      case TvKey.UP:
         this.logger.info('key: up');
         this.player.prev();
         break;
-      case tvKey.DOWN:
+      case TvKey.DOWN:
         this.logger.info('key: down');
         this.player.next();
         break;
-      case tvKey.ENTER:
+      case TvKey.ENTER:
         this.logger.info('key: enter');
         this.player.enter();
         break;
-      case tvKey.INFO:
+      case TvKey.INFO:
         this.logger.info(`video state: ${Player.state}`);
         this.player.nextAudio();
         break;
-      case tvKey.N0:
+      case TvKey.N0:
         this.player.ui.toogleLog();
         break;
-      case tvKey.N1:
+      case TvKey.N1:
         this.player.set4k(true)
         break;
-      case tvKey.N2:
+      case TvKey.N2:
         this.player.set4k(false)
         break;
-      case tvKey.N3:
-      case tvKey.N4:
-      case tvKey.N5:
-      case tvKey.N6:
-      case tvKey.N7:
-      case tvKey.N8:
-      case tvKey.N9:
+      case TvKey.N3:
+      case TvKey.N4:
+      case TvKey.N5:
+      case TvKey.N6:
+      case TvKey.N7:
+      case TvKey.N8:
+      case TvKey.N9:
         this.logger.info(`key: ${key}`);
         break;
     }
   }
 
-  registerKeys() {
-    const usedKeys = [
+  get usedKeys() {
+    return [
       'Info',
       'MediaPause', 'MediaPlay',
       'MediaPlayPause', 'MediaStop',
       'MediaFastForward', 'MediaRewind',
       '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
     ];
+  }
 
-    usedKeys.forEach((key) => {
+  registerKeys() {
+    this.usedKeys.forEach((key) => {
       this.tizen.tvinputdevice.registerKey(key);
     });
   }

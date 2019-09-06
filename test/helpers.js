@@ -33,6 +33,18 @@ const NullWebapis = {
   }
 };
 
+const NullTizen = {
+  systeminfo: {
+    getPropertyValue: function(value, callback) {}
+  },
+  tvinputdevice: {
+    registerKeys: [],
+    registerKey: function(key) {
+      this.registerKeys.push(key);
+    }
+  }
+};
+
 const appDom = new JSDOM(`
   <body>
     <div class="section">
@@ -57,5 +69,6 @@ module.exports = {
   expect: chai.expect,
   JSDOM: JSDOM,
   sinon: sinon,
-  NullWebapis: NullWebapis
+  NullWebapis: NullWebapis,
+  NullTizen: NullTizen
 };

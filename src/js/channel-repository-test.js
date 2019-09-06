@@ -1,21 +1,12 @@
-import { expect, loadFixture } from '../../test/helpers.js'
+import { expect } from '../../test/helpers.js'
 import { XMLHttpRequest as NodeXmlHttpRequest } from 'xmlhttprequest'
 
 import Parser from './parser.js'
+import ChannelRepository from './channel-repository.js'
 
-describe('Parser', () => {
+describe('Channel repository', () => {
   const parser = new Parser({
     adapter: NodeXmlHttpRequest
-  });
-
-  describe('file from site webarmen', () => {
-    const m3uContent = loadFixture('webarmen.m3u');
-    const channels = parser.parse(m3uContent)
-    const countChannelsInWebarmen = 121;
-
-    it('detects all channels', () => {
-      expect(channels.length).to.be.equal(countChannelsInWebarmen);
-    });
   });
 
   describe('load channels from urls', () => {
@@ -25,7 +16,8 @@ describe('Parser', () => {
     ];
 
     it('returns all channels', () => {
-      const promise = parser.loadFromUrls(urls);
+      const promise = ChannelRepository.loadFromUrls(urls, { parser: parser });
+
       promise.then((channels) => {
         expect(channels.length).not.to.equal(0)
       });

@@ -1,7 +1,6 @@
 import Logger from './logger.js'
 import I18n from './i18n.js'
 
-// Round shortcut
 function int(number) {
   return Math.round(number);
 }
@@ -85,17 +84,16 @@ class UI {
     this.message( I18n.t("audioTrack", { name: no }) );
   }
 
-  // Set channel list
-  setChannels(chennelList) {
-    var channels = this.dom.channels;
-    channels.innerHTML = '';
-    for (var item in chennelList) {
+  setChannels(channels) {
+    this.dom.channels.innerHTML = '';
+
+    for (var channel of channels) {
       var li = this.document.createElement('li');
-      item = chennelList[item];
-      li.dataset.name = item.name;
-      li.dataset.url = item.url;
-      li.innerHTML = item.name;
-      channels.appendChild(li);
+
+      li.dataset.name = channel.prettyName;
+      li.dataset.url = channel.url;
+      li.innerHTML = channel.prettyName;
+      this.dom.channels.appendChild(li);
     }
     this.next();
   }

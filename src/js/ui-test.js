@@ -2,6 +2,7 @@ import { expect, appDom } from '../../test/helpers.js'
 
 import Logger from './logger.js'
 import UI from './ui.js'
+import Channel from './channel.js'
 
 describe('UI', () => {
   const logElement = appDom.window.document.getElementById('log');
@@ -68,7 +69,7 @@ describe('UI', () => {
   });
 
   describe('setChannels', () => {
-    const channels = { "MTV": { url: 'mtv-url', name: "MTV" } };
+    const channels = [ new Channel({ url: 'mtv-url', name: "MTV" }) ];
 
     xit('channels is empty array', () => {
       ui.setChannels({})
@@ -82,11 +83,11 @@ describe('UI', () => {
   });
 
   describe('channels', () => {
-    const channels = {
-      "1-TV": { url: '1-TV-url', name: "1-TV" },
-      "2-TV": { url: '2-TV-url', name: "2-TV" },
-      "3-TV": { url: '3-TV-url', name: "3-TV" }
-    };
+    const channels = [
+      new Channel({ url: '1-TV-url', name: "1-TV" }),
+      new Channel({ url: '2-TV-url', name: "2-TV" }),
+      new Channel({ url: '3-TV-url', name: "3-TV" })
+    ];
 
     beforeEach(() => { ui.setChannels(channels) });
     afterEach(() => { channelList.innerHTML = ''; });
@@ -114,7 +115,7 @@ describe('UI', () => {
     });
 
     it('get selected channel', () => {
-      expect(ui.selectedChannel.dataset.name).to.be.equal(channels["1-TV"].name)
+      expect(ui.selectedChannel.dataset.name).to.be.equal("1-TV")
     });
 
     it('playing', () => {
@@ -124,7 +125,7 @@ describe('UI', () => {
         '<li data-name="3-TV" data-url="3-TV-url">3-TV</li>'
       ].join('');
 
-      ui.playing(channels["1-TV"].url);
+      ui.playing('1-TV-url');
       expect(message.innerHTML).to.be.equal('Loading "1-TV"...')
       expect(channelList.innerHTML).to.be.equal(resultHTML);
     });

@@ -3,14 +3,15 @@ import { expect, appDocument, NullWebapis } from '../../test/helpers.js'
 import UI from './ui.js'
 import Logger from './logger.js'
 import Player from './player.js'
+import Channel from './channel.js'
 
 describe('Player', () => {
   def('channels', () => {
-    return {
-      "1-TV": { url: '1-TV-url', name: "1-TV" },
-      "2-TV": { url: '2-TV-url', name: "2-TV" },
-      "3-TV": { url: '3-TV-url', name: "3-TV" }
-    };
+    return [
+      new Channel({ url: '1-TV-url', name: "1-TV" }),
+      new Channel({ url: '2-TV-url', name: "2-TV" }),
+      new Channel({ url: '3-TV-url', name: "3-TV" })
+    ];
   });
 
   def('logger', () => {
@@ -69,7 +70,7 @@ describe('Player', () => {
 
     describe('when url is 2-TV', () => {
       beforeEach(() => {
-        $player.play($channels['2-TV'].url);
+        $player.play('2-TV-url');
       });
 
       it('#onbufferingstart', () => {
