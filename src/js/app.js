@@ -3,7 +3,6 @@ import ChannelRepository from './channel-repository'
 import UI from './ui.js'
 import Player from './player'
 import TvKey from './tv-key';
-import Playlist from './playlist.js'
 
 class App {
   constructor(props) {
@@ -24,7 +23,7 @@ class App {
   }
 
   loadChannels() {
-    const promise = ChannelRepository.loadFromUrls(Playlist.urls);
+    const promise = ChannelRepository.loadFromProfile();
 
     promise.then((repository) => {
       let channelsQuery = repository.startQuery();

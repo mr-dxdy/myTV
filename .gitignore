@@ -7,6 +7,7 @@ dist/myTV/.sign/
 
 # Dev
 node_modules/
+tmp/
 
 # App settings
 src/js/settings.js

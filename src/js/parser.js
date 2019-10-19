@@ -1,13 +1,9 @@
 import M3U8FileParser from 'm3u8-file-parser'
 
 class Parser {
-  constructor(props = {}) {
-    this.adapter = props.adapter || window.XMLHttpRequest;
-  }
-
   loadFromUrl(url) {
     return new Promise((resolve, reject) => {
-      const xhr = new this.adapter();
+      const xhr = new XMLHttpRequest();
       xhr.open('GET', url);
       xhr.onload = () => {
         const channels = this.parse(xhr.responseText);

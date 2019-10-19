@@ -1,14 +1,16 @@
 const fs = require('fs');
 const JSDOM = require('jsdom').JSDOM;
-const chaiDom = require('chai-dom');
 const chai = require('chai');
-const sinon = require('sinon');
 
-chai.use(chaiDom);
+chai.use(require('chai-dom'));
+chai.use(require('chai-factories'))
 
 function loadFixture(filename) {
   return fs.readFileSync(__dirname + '/fixtures/' + filename, 'utf8');
 }
+
+chai.factory('webarmen-playlist', { url: 'https://webarmen.com/my/iptv/auto.nogrp.q.m3u', name: 'Webarmen' })
+chai.factory('sampo-playlist', { url: 'http://iptv.sampo.ru/iptv.m3u', name: 'Sampo' })
 
 const NullWebapis = {
   avplay: {
@@ -68,7 +70,7 @@ module.exports = {
   appDocument: appDom.window.document,
   expect: chai.expect,
   JSDOM: JSDOM,
-  sinon: sinon,
   NullWebapis: NullWebapis,
-  NullTizen: NullTizen
+  NullTizen: NullTizen,
+  create: chai.create
 };

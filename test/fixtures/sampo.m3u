@@ -1,0 +1,51 @@
+#EXTM3U cache=500 playlist=1 deinterlace=1 url-tvg="http://www.teleguide.info/download/new3/jtv.zip" m3uautoload=1
+#EXTINF:-1 tvg-name="Первый_канал",Первый
+http://iptv1.sampo.ru/pervii
+#EXTINF:-1 tvg-name="Россия_1",Россия 1
+http://iptv1.sampo.ru/rossiya1
+#EXTINF:-1 tvg-name="Матч_ТВ",Матч ТВ
+http://iptv1.sampo.ru/matchtv
+#EXTINF:-1 tvg-name="НТВ",НТВ
+http://iptv1.sampo.ru/ntv
+#EXTINF:-1 tvg-name="5 канал",5 канал
+http://iptv1.sampo.ru/5kanal
+#EXTINF:-1 tvg-name="Россия_Культура",Россия К
+http://iptv1.sampo.ru/rossiyak
+#EXTINF:-1 tvg-name="Россия_24",Россия 24
+http://iptv1.sampo.ru/rossiya24
+#EXTINF:-1 tvg-name="Карусель",Карусель
+http://iptv1.sampo.ru/karusel
+#EXTINF:-1 tvg-name="ОТР",Общественное телевидение России
+http://iptv1.sampo.ru/otr
+#EXTINF:-1 tvg-name="ТВЦ",ТВЦ
+http://iptv1.sampo.ru/tvc
+#EXTINF:-1 tvg-name="РенТВ",РенТВ
+http://iptv1.sampo.ru/rentv
+#EXTINF:-1 tvg-name="Спас",Спас
+http://iptv1.sampo.ru/spas
+#EXTINF:-1 tvg-name="СТС",СТС
+http://iptv1.sampo.ru/sts
+#EXTINF:-1 tvg-name="Домашний",Домашний
+http://iptv1.sampo.ru/domashnii
+#EXTINF:-1 tvg-name="ТВ3",ТВ3
+http://iptv1.sampo.ru/tv3
+#EXTINF:-1 tvg-name="Пятница",Пятница
+http://iptv1.sampo.ru/pyatnica
+#EXTINF:-1 tvg-name="Звезда",Звезда
+http://iptv1.sampo.ru/zvezda
+#EXTINF:-1 tvg-name="Мир",Мир
+http://iptv1.sampo.ru/mir
+#EXTINF:-1 tvg-name="ТНТ",ТНТ
+http://iptv1.sampo.ru/tnt_ptz
+#EXTINF:-1 tvg-name="МузТВ",МузТВ
+http://iptv1.sampo.ru/muztv
+#EXTINF:-1 tvg-name="Ника_Плюс",Ника Плюс
+http://iptv1.sampo.ru/nikaplus
+#EXTINF:-1 tvg-name="ТНТ_Москва",ТНТ Москва
+http://iptv1.sampo.ru/tnt
+#EXTINF:-1 tvg-name="Disney_Channel",Disney
+http://iptv1.sampo.ru/disney
+#EXTINF:-1 tvg-name="ЧЕ",ЧЕ
+http://iptv1.sampo.ru/che
+#EXTINF:-1 tvg-name="Сампо_ТВ_360",Сампо ТВ 360
+http://iptv1.sampo.ru/sampo360

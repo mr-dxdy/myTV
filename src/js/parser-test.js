@@ -1,31 +1,38 @@
-import { expect, loadFixture } from '../../test/helpers.js'
-import { XMLHttpRequest as NodeXmlHttpRequest } from 'xmlhttprequest'
+import xhrMock from 'xhr-mock';
+import { expect, loadFixture, create } from '../../test/helpers.js'
 
 import Parser from './parser.js'
 
 describe('Parser', () => {
-  const parser = new Parser({
-    adapter: NodeXmlHttpRequest
-  });
+  beforeEach(() => xhrMock.setup());
+  afterEach(() => xhrMock.teardown());
+
+  const webarmenPlaylist = create('webarmen-playlist')
+  const sampoPlaylist = create('sampo-playlist')
+
+  const webarmenM3U = loadFixture('webarmen.m3u');
+  const sampoM3U = loadFixture('sampo.m3u');
 
   describe('file from site webarmen', () => {
-    const m3uContent = loadFixture('webarmen.m3u');
-    const channels = parser.parse(m3uContent)
+    const parser = new Parser()
+    const channels = parser.parse(webarmenM3U)
     const countChannelsInWebarmen = 121;
 
     it('detects all channels', () => {
+      xhrMock.get(webarmenPlaylist.url, { status: 200, body: webarmenM3U })
+
       expect(channels.length).to.be.equal(countChannelsInWebarmen);
     });
   });
 
   describe('load channels from urls', () => {
-    const urls = [
-      'https://webarmen.com/my/iptv/auto.nogrp.q.m3u',
-      'http://iptv.sampo.ru/iptv.m3u'
-    ];
+    const urls = [webarmenPlaylist.url, sampoPlaylist.url];
 
     it('returns all channels', () => {
-      const promise = parser.loadFromUrls(urls);
+      xhrMock.get(webarmenPlaylist.url, { status: 200, body: webarmenM3U })
+      xhrMock.get(sampoPlaylist.url, { status: 200, body: sampoM3U })
+
+      const promise = new Parser().loadFromUrls(urls);
       promise.then((channels) => {
         expect(channels.length).not.to.equal(0)
       });

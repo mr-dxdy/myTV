@@ -5,7 +5,9 @@
   "private": "true",
   "scripts": {
     "build": "npx webpack --mode=production",
-    "test": "mocha -u bdd-lazy-var/global --require @babel/register src/**/*test.js"
+    "test": "mocha --exit -u bdd-lazy-var/global --require @babel/register src/**/*test.js",
+    "decrypt": "npx babel-node tasks/decrypt-playlist.js",
+    "encrypt": "npx babel-node tasks/encrypt-playlist.js"
   },
   "repository": {
     "type": "git",
@@ -19,25 +21,28 @@
   "homepage": "https://github.com/mr-dxdy/myTV#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/node": "^7.6.3",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "babel-loader": "^8.0.6",
     "bdd-lazy-var": "^2.5.2",
     "chai": "^4.2.0",
     "chai-dom": "^1.8.1",
+    "chai-factories": "^0.1.0",
     "css-loader": "^3.1.0",
     "file-loader": "^4.2.0",
     "jsdom": "^15.1.1",
     "mini-css-extract-plugin": "^0.8.0",
     "mocha": "^6.2.0",
-    "sinon": "^7.4.1",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
-    "xmlhttprequest": "^1.8.0"
+    "xhr-mock": "^2.5.0"
   },
   "dependencies": {
+    "aes-js": "^3.1.2",
     "i18next": "^17.0.13",
-    "m3u8-file-parser": "^0.2.1"
+    "m3u8-file-parser": "^0.2.1",
+    "md5": "^2.2.1"
   }
 }

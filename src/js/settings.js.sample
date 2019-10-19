@@ -1,16 +1,54 @@
 class LanguageSettings {
+  constructor() {
+    this.m_default = 'en'
+  }
+
   get default() {
-    return 'en';
+    return this.m_default;
+  }
+
+  set default(val) {
+    this.m_default = val;
+  }
+}
+
+class CryptSettings {
+  get password() {
+    return 'your-password';
+  }
+
+  get passwordMD5() {
+    return MD5(this.password);
+  }
+}
+
+class ProfileSettings {
+  get endpoint() {
+    return '';
+  }
+
+  get playlistUrl() {
+    return this.endpoint + '/playlist.enc';
   }
 }
 
 class Settings {
   constructor() {
     this.m_language = new LanguageSettings();
+    this.m_crypt = new CryptSettings();
+    this.m_profile = new ProfileSettings();
   }
 
   get language() {
     return this.m_language;
+  }
+
+  get crypt() {
+    return this.m_crypt;
+  }
+
+  get profile() {
+    return this.m_profile;
   }
 }
 
