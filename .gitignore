@@ -4,6 +4,7 @@ dist/myTV/*.wgt
 dist/myTV/css/main.css
 dist/myTV/js/main.js
 dist/myTV/.sign/
+dist/myTV/.buildResult/
 
 # Dev
 node_modules/
