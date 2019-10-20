@@ -15,7 +15,7 @@ class Crypt {
 
   static decrypt(encryptedHex) {
     const encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
-    var decryptedBytes = aesCtr.decrypt(encryptedBytes);
+    const decryptedBytes = aesCtr.decrypt(encryptedBytes);
 
     return aesjs.utils.utf8.fromBytes(decryptedBytes);
   }

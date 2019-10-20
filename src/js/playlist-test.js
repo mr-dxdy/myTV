@@ -7,7 +7,8 @@ describe('Playlist', () => {
   beforeEach(() => xhrMock.setup());
   afterEach(() => xhrMock.teardown());
 
-  const data = JSON.parse( loadFixture('playlist.json') );
+  const dataRaw = loadFixture('playlist.json');
+  const data = JSON.parse(dataRaw)
 
   it('returns urls', () => {
     const playlist = new Playlist(data);
@@ -15,10 +16,7 @@ describe('Playlist', () => {
   });
 
   it('load from url', () => {
-    xhrMock.get('/my-playlist.json', {
-      status: 200,
-      body: data
-    })
+    xhrMock.get('/my-playlist.json', { status: 200, body: dataRaw });
 
     const promise = Playlist.loadFromUrl('/my-playlist.json', { crypted: false })
     promise.then((playlist) => {

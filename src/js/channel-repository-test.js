@@ -12,7 +12,8 @@ describe('Channel repository', () => {
 
   const webarmenM3U = loadFixture('webarmen.m3u');
   const sampoM3U = loadFixture('sampo.m3u');
-  const playlist = JSON.parse(loadFixture('playlist.json'));
+  const playlistRaw = loadFixture('playlist.json');
+  const playlist = JSON.parse(playlistRaw)
 
   describe('load channels from urls', () => {
     const urls = [webarmenPlaylist.url, sampoPlaylist.url];
@@ -32,7 +33,7 @@ describe('Channel repository', () => {
   describe('loadFromProfile', () => {
     it('returns playlist from profile', () => {
       xhrMock.get(webarmenPlaylist.url, { status: 200, body: webarmenM3U })
-      xhrMock.get('/profile/playlist.json', { status: 200, body: playlist })
+      xhrMock.get('/profile/playlist.json', { status: 200, body: playlistRaw })
 
       const promise = ChannelRepository.loadFromProfile({ playlistUrl: '/profile/playlist.json', crypted: false })
 
